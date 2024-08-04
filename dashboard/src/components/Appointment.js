@@ -16,7 +16,7 @@ const AppointmentForm = () => {
   useEffect(() => {
     const fetchPatientData = async () => {
       try {
-        const response = await axios.get(`http://localhost:3002/patients/${patientId}`);
+        const response = await axios.get(`https://caton-website.onrender.com/patients/${patientId}`);
         setPatient(response.data);
       } catch (error) {
         console.error('Error fetching patient data:', error);
@@ -39,7 +39,7 @@ const AppointmentForm = () => {
 
       setLoading(true); // Start loading
 
-      const response = await axios.post('http://localhost:3002/appointments', newAppointment);
+      const response = await axios.post('https://caton-website.onrender.com/appointments', newAppointment);
       
       console.log('Appointment created:', response.data);
       setDoctorId('');

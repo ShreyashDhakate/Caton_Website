@@ -17,7 +17,7 @@ const app = express();
 
 // Configure CORS to allow requests from your frontend
 const corsOptions = {
-  origin: 'http://localhost:3000', 
+  origin: 'https://caton-website-dashboard.vercel.app', 
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
 

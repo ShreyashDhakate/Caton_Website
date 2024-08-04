@@ -83,7 +83,7 @@ app.get("/allAppointments/:id", async (req, res) => {
 
     // Step 3: Find all appointments by these IDs
     const appointments = await AppointmentModel.find({ _id: { $in: appointmentIds } });
-    console.log(appointments);
+    
     // Step 4: Return the appointments data
     res.status(200).json(appointments);
   } catch (err) {
@@ -131,7 +131,7 @@ app.post('/appointments', async (req, res) => {
   }
 });
 app.get("/", (req, res) => {
-  res.redirect("http://localhost:3000");
+  res.json("working:true");
 });
 
 app.use("/", authRoute);

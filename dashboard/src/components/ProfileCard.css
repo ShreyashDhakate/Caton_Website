@@ -1,0 +1,89 @@
+/* Container styling for the main wrapper */
+.container {
+  background-color: #E7F0DC;
+  height: 50vh;
+  width: 120vh;
+  border-radius: 2rem;
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid #ddd;
+  padding: 16px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for elements inside the .rows class */
+.rows h1,
+.rows p {
+  margin-left: 2rem;
+}
+
+.rows p {
+  margin-top: -2rem;
+}
+
+/* Icon styling */
+.my-icon {
+  width: 1.5rem;
+  margin-top: 2rem;
+  margin-right: 8px;
+}
+
+/* Profile photo styling */
+.profile-photo {
+  margin-left: 10rem;
+  margin-top: 2rem;
+  height: 80%;
+}
+
+/* Divider styling */
+.divider {
+  text-decoration: overline;
+}
+
+
+/* .container {
+    background-color: #E7F0DC;
+    height: 50vh;
+    width: 120vh;
+    border-radius: 2rem;
+}
+.rows h1,.rows p{
+    margin-left: 2rem;
+}
+.rows p{
+    margin-top: -2rem;
+}
+.my-icon{
+    width: 1.5rem;
+    margin-top: 2rem;
+    
+}
+.container {
+    display: flex;
+    justify-content: space-between;
+    border: 1px solid #ddd;
+    padding: 16px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .profile-details {
+    width: 40%;
+    flex: 0 1 auto; /* Allows the profile-details to shrink and grow */
+    /* margin-right: 16px; /* Adds space between profile-details and blank-box */
+  
+/*   
+  .profile-photo{
+    margin-left: 10rem;
+    margin-top: 2rem;
+    height: 80%;
+  }
+ 
+  
+  .my-icon {
+    margin-right: 8px;
+    margin-top: -5rem;
+  }
+  .divider{
+    text-decoration: overline;
+  }
+   */ 

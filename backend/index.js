@@ -10,14 +10,15 @@ const authRoute = require("./Routes/AuthRoute");
 const { AppointmentModel } = require("./model/AppointmentModel");
 const { PatientsModel } = require("./model/PatientsModel");
 const { DoctorsModel } = require("./model/DoctorsModel");
+
 const PORT = process.env.PORT || 3002;
 const uri = process.env.MONGO_URL;
 
 const app = express();
 
-// Configure CORS to allow requests from your frontend
+// Configure CORS to allow requests from your frontend and localhost
 const corsOptions = {
-  origin: 'https://caton-website-dashboard.vercel.app', 
+  origin: ['https://caton-website-dashboard.vercel.app', 'http://localhost:3000'],
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
 };
 
@@ -37,6 +38,7 @@ app.get('/patients/:id', async (req, res) => {
     res.status(500).json({ message: 'Server error', error: err });
   }
 });
+
 app.get('/doctor/:id', async (req, res) => {
   try {
     const doctor = await DoctorsModel.findById(req.params.id);
@@ -46,6 +48,7 @@ app.get('/doctor/:id', async (req, res) => {
     res.status(500).json({ message: 'Server error', error: err });
   }
 });
+
 app.get("/allPatients", async (req, res) => {
   try {
     const allPatients = await PatientsModel.find({});
@@ -54,6 +57,7 @@ app.get("/allPatients", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+
 app.get("/allDoctors", async (req, res) => {
   try {
     const allDoctors = await DoctorsModel.find({});
@@ -62,7 +66,7 @@ app.get("/allDoctors", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-//const patient = await PatientsModel.findById(patientId);
+
 app.get("/allAppointments/:id", async (req, res) => {
   try {
     const patientId = req.params.id; // Extract patient ID from the URL parameters
@@ -91,10 +95,7 @@ app.get("/allAppointments/:id", async (req, res) => {
   }
 });
 
-
-// 
 app.post('/appointments', async (req, res) => {
-  
   try {
     const { patient_id, doctor_id, date, reason } = req.body;
     console.log("Request body:", req.body);
@@ -109,7 +110,8 @@ app.post('/appointments', async (req, res) => {
     
     // Save the appointment to the database
     const savedAppointment = await newAppointment.save();
-    // 
+    
+    // Update patient to include this new appointment
     await PatientsModel.findByIdAndUpdate(
       patient_id,
       { $push: { total_appointments: savedAppointment._id } },
@@ -130,11 +132,13 @@ app.post('/appointments', async (req, res) => {
     });
   }
 });
+
 app.get("/", (req, res) => {
   res.json("working:true");
 });
 
 app.use("/", authRoute);
+
 app.listen(PORT, async () => {
   try {
     await mongoose.connect(uri);
@@ -144,3 +148,4 @@ app.listen(PORT, async () => {
     console.error("Database connection error:", err.message);
   }
 });
+
